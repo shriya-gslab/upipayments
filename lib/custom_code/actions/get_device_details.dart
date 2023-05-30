@@ -12,7 +12,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-Future getDeviceDetails() async {
+Future<Map<String, dynamic>> getDeviceDetails() async {
   // Add your function code here!
   DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
   Map<String, dynamic> _deviceData = <String, dynamic>{};
@@ -34,6 +34,7 @@ Future getDeviceDetails() async {
   print(_deviceData);
   print("-----------------------------------------------");
   print("${_deviceData['property']}");
+  return _deviceData;
 }
 
 Map<String, dynamic> _readAndroidBuildData(AndroidDeviceInfo build) {

@@ -21,6 +21,8 @@ class _ButtonActionScreenWidgetState extends State<ButtonActionScreenWidget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
+  Map<String, dynamic> _deviceData = <String, dynamic>{};
+
 
   @override
   void initState() {
@@ -101,7 +103,10 @@ class _ButtonActionScreenWidgetState extends State<ButtonActionScreenWidget> {
                     style: FlutterFlowTheme.of(context).bodyMedium,
                   ),
                   Text(
-                    'Hello World',
+                    valueOrDefault<String>(
+                      _deviceData['model'],
+                      'Model ',
+                    ),
                     style: FlutterFlowTheme.of(context).bodyMedium,
                   ),
                   Padding(
@@ -109,7 +114,11 @@ class _ButtonActionScreenWidgetState extends State<ButtonActionScreenWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        await actions.getDeviceDetails();
+                        _deviceData=await actions.getDeviceDetails();
+                        print(_deviceData['model']);
+                        setState(() {
+
+                        });
                       },
                       text: 'getDevice details',
                       options: FFButtonOptions(
